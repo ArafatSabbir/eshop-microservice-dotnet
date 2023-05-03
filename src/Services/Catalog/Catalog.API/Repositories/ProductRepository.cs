@@ -13,7 +13,7 @@ public class ProductRepository : IProductRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<IEnumerable<Product>> GetProductsAsync()
+    public async Task<IEnumerable<Product>> GetProducts()
     {
         return await _context
                         .Products
@@ -21,7 +21,7 @@ public class ProductRepository : IProductRepository
                         .ToListAsync();
     }
 
-    public async Task<Product> GetProductAsync(string id)
+    public async Task<Product> GetProduct(string id)
     {
         return await _context
                         .Products
@@ -29,7 +29,7 @@ public class ProductRepository : IProductRepository
                         .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Product>> GetProductsByNameAsync(string name)
+    public async Task<IEnumerable<Product>> GetProductsByName(string name)
     {
         FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
         return await _context
@@ -38,7 +38,7 @@ public class ProductRepository : IProductRepository
                         .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> GetProductsByCategoryAsync(string categoryName)
+    public async Task<IEnumerable<Product>> GetProductsByCategory(string categoryName)
     {
         FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Category, categoryName);
         return await _context
@@ -47,12 +47,12 @@ public class ProductRepository : IProductRepository
                         .ToListAsync();
     }
 
-    public async Task CreateProductAsync(Product product)
+    public async Task CreateProduct(Product product)
     {
         await _context.Products.InsertOneAsync(product);
     }
 
-    public async Task<bool> UpdateProductAsync(Product product)
+    public async Task<bool> UpdateProduct(Product product)
     {
         var updateResult = await _context
                                     .Products
@@ -61,7 +61,7 @@ public class ProductRepository : IProductRepository
                 && updateResult.ModifiedCount > 0;
     }
 
-    public async Task<bool> DeleteProductAsync(string id)
+    public async Task<bool> DeleteProduct(string id)
     {
         FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
         DeleteResult deleteResult = await _context
