@@ -20,6 +20,4 @@ public class Product
     public string ImageFile { get; set; } = string.Empty;
     [BsonElement("Price")]
     public decimal Price { get; set; }
-    [BsonElement("Quantity")]
-    public int Quantity { get; set; }
 }
