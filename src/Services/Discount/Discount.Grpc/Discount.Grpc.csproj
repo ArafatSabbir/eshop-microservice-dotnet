@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Discount.API\Discount.API.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Protobuf Include="Protos\discount.proto" GrpcServices="Server" />
   </ItemGroup>
 
