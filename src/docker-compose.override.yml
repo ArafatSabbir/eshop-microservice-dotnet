@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-    - mongo_data:/data/db
+      - mongo_data:/data/db
 
   basketdb:
     container_name: basketdb
@@ -23,18 +23,19 @@ services:
       - POSTGRES_DB=DiscountDb
     restart: always
     ports:
-        - "5432:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
   orderdb:
     container_name: orderdb
     environment:
-        SA_PASSWORD: "sabbir123"
-        ACCEPT_EULA: "Y"
+      - MYSQL_ROOT_PASSWORD=admin1234
+      - MYSQL_DATABASE=OrderDb
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     restart: always
     ports:
-        - "1433:1433"
+      - 8080:3306
 
 
   catalog.api:
@@ -81,12 +82,12 @@ services:
   ordering.api:
     container_name: ordering.api
     environment:
-        - ASPNETCORE_ENVIRONMENT=Development
-        - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=sabbir123"            
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;user id=root;Database=OrderDb;password=admin1234;"            
     depends_on:
-        - orderdb
+      - orderdb
     ports:
-        - "8004:80"
+      - "8004:80"
 
   pgadmin:
     container_name: pgadmin
@@ -95,7 +96,7 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
     ports:
-        - "5050:80"
+      - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
     
