@@ -3,10 +3,10 @@ See the overall picture of **implementations on microservices with .net tools** 
 
 ![microservices_remastered](https://user-images.githubusercontent.com/1147445/110304529-c5b70180-800c-11eb-832b-a2751b5bda76.png)
 
-There is a couple of microservices which implemented **e-commerce** modules over **Catalog, Basket, Discount** and **Ordering** microservices with **NoSQL (MongoDB, Redis)** and **Relational databases (PostgreSQL, Sql Server)** with communicating over **RabbitMQ Event Driven Communication** and using **Ocelot API Gateway**.
+There is a couple of microservices that implemented **e-commerce** modules over **Catalog, Basket, Discount** and **Ordering** microservices with **NoSQL (MongoDB, Redis)** and **Relational databases (PostgreSQL, SQL Server)** with communicating over **RabbitMQ Event-Driven Communication** and using **Ocelot API Gateway**.
 
-## Whats Including In This Repository
-We have implemented below **features over the run-aspnetcore-microservices repository**.
+## What Including In This Repository
+We have implemented the below **features over the eshop-microservice-dotnet repository**.
 
 #### Catalog microservice which includes; 
 * ASP.NET Core Web API application 
@@ -33,13 +33,13 @@ We have implemented below **features over the run-aspnetcore-microservices repos
 * Sync inter-service **gRPC Communication**
 * Async Microservices Communication with **RabbitMQ Message-Broker Service**
 * Using **RabbitMQ Publish/Subscribe Topic** Exchange Model
-* Using **MassTransit** for abstraction over RabbitMQ Message-Broker system
-* Publishing BasketCheckout event queue from Basket microservices and Subscribing this event from Ordering microservices	
+* Using **MassTransit** for abstraction over the RabbitMQ Message-Broker system
+* Publishing BasketCheckout event queue from Basket microservices and Subscribing to this event from Ordering microservices	
 * Create **RabbitMQ EventBus.Messages library** and add references Microservices
 
 #### Ordering Microservice
 * Implementing **DDD, CQRS, and Clean Architecture** with using Best Practices
-* Developing **CQRS with using MediatR, FluentValidation and AutoMapper packages**
+* Developing **CQRS using MediatR, FluentValidation, and AutoMapper packages**
 * Consuming **RabbitMQ** BasketCheckout event queue with using **MassTransit-RabbitMQ** Configuration
 * **SqlServer database** connection and containerization
 * Using **Entity Framework Core ORM** and auto migrate to SqlServer when application startup
@@ -57,14 +57,14 @@ We have implemented below **features over the run-aspnetcore-microservices repos
 #### Microservices Cross-Cutting Implementations
 * Implementing **Centralized Distributed Logging with Elastic Stack (ELK); Elasticsearch, Logstash, Kibana and SeriLog** for Microservices
 * Use the **HealthChecks** feature in back-end ASP.NET microservices
-* Using **Watchdog** in separate service that can watch health and load across services, and report health about the microservices by querying with the HealthChecks
+* Using **Watchdog** in a separate service that can watch health and load across services, and report health about the microservices by querying with the HealthChecks
 
 #### Microservices Resilience Implementations
 * Making Microservices more **resilient Use IHttpClientFactory** to implement resilient HTTP requests
 * Implement **Retry and Circuit Breaker patterns** with exponential backoff with IHttpClientFactory and **Polly policies**
 
 #### Ancillary Containers
-* Use **Portainer** for Container lightweight management UI which allows you to easily manage your different Docker environments
+* Use **Portainer** for Container lightweight management UI which allows you to manage your different Docker environments easily
 * **pgAdmin PostgreSQL Tools** feature rich Open Source administration and development platform for PostgreSQL
 
 #### Docker Compose establishment with all microservices on docker;
@@ -90,11 +90,11 @@ Follow these steps to get your development environment set up: (Before Run Start
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ```
 
->Note: If you get connection timeout error Docker for Mac please [Turn Off Docker's "Experimental Features".](https://github.com/aspnetrun/run-aspnetcore-microservices/issues/33)
+>Note: If you get a connection timeout error Docker for Mac please [Turn Off Docker's "Experimental Features".](https://github.com/aspnetrun/run-aspnetcore-microservices/issues/33)
 
-4. Wait for docker compose all microservices. That’s it! (some microservices need extra time to work so please wait if not worked in first shut)
+4. Wait for docker compose all microservices. That’s it! (some microservices need extra time to work so please wait if they are not working in the first shot)
 
-5. You can **launch microservices** as below urls:
+5. You can **launch microservices** as below URLs:
 
 * **Catalog API -> http://host.docker.internal:8000/swagger/index.html**
 * **Basket API -> http://host.docker.internal:8001/swagger/index.html**
@@ -103,6 +103,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 * **pgAdmin PostgreSQL -> http://host.docker.internal:5050**   -- admin@aspnetrun.com/admin1234
 * **Portainer -> http://host.docker.internal:9000**   -- admin/admin1234
+* **Rabbit Management Dashboard -> http://host.docker.internal:15672**   -- guest/guest
 
 <!--
 * **Shopping.Aggregator -> http://host.docker.internal:8005/swagger/index.html**
@@ -117,8 +118,9 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Web UI -> http://host.docker.internal:8006**
 
 5. Launch http://host.docker.internal:8007 in your browser to view the Web Status. Make sure that every microservices are healthy.
-6. Launch http://host.docker.internal:8006 in your browser to view the Web UI. You can use Web project in order to **call microservices over API Gateway**. When you **checkout the basket** you can follow **queue record on RabbitMQ dashboard**.
+6. Launch http://host.docker.internal:8006 in your browser to view the Web UI. You can use Web project in order to **call microservices over API Gateway**. When you 
 -->
+**checkout the basket** you can follow **queue record on RabbitMQ dashboard**.
 <!--
 ![mainscreen2](https://user-images.githubusercontent.com/1147445/81381837-08226000-9116-11ea-9489-82645b8dbfc4.png)
 -->
