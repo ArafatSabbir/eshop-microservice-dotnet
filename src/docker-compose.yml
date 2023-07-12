@@ -12,7 +12,10 @@ services:
     image: postgres
 
   orderdb:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
 
   pgadmin:
     image: dpage/pgadmin4
