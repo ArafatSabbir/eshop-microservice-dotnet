@@ -101,6 +101,9 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 * **Discount API -> http://host.docker.internal:8002/swagger/index.html**
 * **Ordering API -> http://host.docker.internal:8004/swagger/index.html**
 
+* **pgAdmin PostgreSQL -> http://host.docker.internal:5050**   -- admin@aspnetrun.com/admin1234
+* **Portainer -> http://host.docker.internal:9000**   -- admin/admin1234
+
 <!--
 * **Shopping.Aggregator -> http://host.docker.internal:8005/swagger/index.html**
 * **API Gateway -> http://host.docker.internal:8010/Catalog**
